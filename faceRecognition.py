@@ -11,6 +11,7 @@ Name=''
 # load the known faces and embeddings along with OpenCV's Haar
 # cascade for face detection
 print("[INFO] loading encodings + face detector...")
+#for linux absolute path of the file is provides 
 data = pickle.loads(open('/home/sharwan/Desktop/face_recognition/encodings.pickle', "rb").read())
 detector = cv2.CascadeClassifier('/home/sharwan/Desktop/face_recognition/haarcascade/haarcascade_frontalface_default.xml')
 # initialize the video stream and allow the camera sensor to warm up
