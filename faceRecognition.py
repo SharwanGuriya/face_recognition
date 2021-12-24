@@ -1,28 +1,37 @@
 # import all the library
-from imutils.video import VideoStream
-from imutils.video import FPS
-import face_recognition
+# from imutils.video import VideoStream
+from imutils.video import FPS  # it is use for showing the FPS
+import face_recognition  #this library help for pace recognition
 import argparse
 import imutils
 import pickle
 import time
 import cv2
 import os
+
+
+#this var is use for get the name save it to the name.txt file
 Name=''
+
+
 # load the known faces and embeddings along with OpenCV's Haar
 # cascade for face detection
 print("[INFO] loading encodings + face detector...")
-#for linux absolute path of the file is provides 
 
+#for linux absolute path of the file is provides 
 data = pickle.loads(open('/home/sharwan/Desktop/face_recognition/encodings.pickle', "rb").read())
 detector = cv2.CascadeClassifier('/home/sharwan/Desktop/face_recognition/haarcascade/haarcascade_frontalface_default.xml')
+
 # initialize the video stream and allow the camera sensor to warm up
 print("[INFO] starting video stream...")
 cam=cv2.VideoCapture(0)
-# vs = VideoStream(usePiCamera=True).start()
+# vs = VideoStream(usePiCamera=True).start() 
+#we can use imulitls videoStreaming for the pi camera
+
 time.sleep(0.5)
 # start the FPS counter
 fps = FPS().start()
+#this is the counter for the while loop so that program exit after after some time
 C=20
 # loop over frames from the video file stream
 while True:
@@ -30,6 +39,7 @@ while True:
 	# grab the frame from the threaded video stream and resize it
 	# to 500px (to speedup processing)
 	ret,frame = cam.read()
+#  her we change the sizr of the frame
 	frame = imutils.resize(frame, width=500)
 
 	# convert the input frame from (1) BGR to grayscale (for face
@@ -45,6 +55,8 @@ while True:
 	boxes = [(y, x + w, y + h, x) for (x, y, w, h) in rects]
 	# compute the facial embeddings for each face bounding box
 	encodings = face_recognition.face_encodings(rgb, boxes)
+ 
+ # this list element contains all the name which we detect at that time
 	names = []
 
 	# loop over the facial embeddings
