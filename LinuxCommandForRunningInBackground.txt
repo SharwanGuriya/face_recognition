@@ -1,0 +1,14 @@
+1. provide absolute path of the file in the program.
+2. after that use command in terminal :-
+            sudo cp -r  pathOfTheFolder/.py File /bin
+3. next comamand is :-
+            sudo chrontab -e
+in this file add the line as below at the end of file
+
+    @reboot /bin/filename.py &
+[&] is define that run the prograsm in background
+
+now restart the system or just logout and login again.
+
+it will run the program in back ground.
+and we are ready to go.
